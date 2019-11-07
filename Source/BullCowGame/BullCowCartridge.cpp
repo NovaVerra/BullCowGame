@@ -10,11 +10,9 @@ void UBullCowCartridge::BeginPlay()
 	PrintLine(TEXT("You're playing the BullCowGame!"));
 	PrintLine(TEXT("Please guess a 4 letter isogram (words without repeating characters)"));
 	PrintLine(TEXT("Please press \"Enter\" to continue"));
-	
-	// Set the HiddenWord
-	HiddenWord = TEXT("star");
 
-	// Set Lives
+	// Setting up game
+	InitGame();
 
 	// Prompt player for PlayerGuess
 };
@@ -46,3 +44,12 @@ void UBullCowCartridge::OnInput(const FString& Input)
 		// If yes, repeat (set next word)
 		// If no, print game failed and show HiddenWord
 };
+
+void UBullCowCartridge::InitGame()
+{
+	// Set the HiddenWord
+	HiddenWord = TEXT("star");
+
+	// Set Lives
+	Lives = 4;
+}
