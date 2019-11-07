@@ -15,7 +15,7 @@ class BULLCOWGAME_API UBullCowCartridge : public UCartridge
 	public:
 	virtual void	BeginPlay() override;
 	virtual void	OnInput(const FString& Input) override;
-	void			InitGame();
+	void			SetupGame();
 
 	// Private Variables
 	private:

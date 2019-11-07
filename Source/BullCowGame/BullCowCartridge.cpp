@@ -12,7 +12,7 @@ void UBullCowCartridge::BeginPlay()
 	PrintLine(TEXT("Please press \"Enter\" to continue"));
 
 	// Setting up game
-	InitGame();
+	SetupGame();
 
 	// Prompt player for PlayerGuess
 };
@@ -45,7 +45,7 @@ void UBullCowCartridge::OnInput(const FString& Input)
 		// If no, print game failed and show HiddenWord
 };
 
-void UBullCowCartridge::InitGame()
+void UBullCowCartridge::SetupGame()
 {
 	// Set the HiddenWord
 	HiddenWord = TEXT("star");
