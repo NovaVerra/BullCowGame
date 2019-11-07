@@ -6,13 +6,16 @@ void UBullCowCartridge::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Welcoming the player
-	PrintLine(TEXT("You're playing the BullCowGame!"));
-	PrintLine(TEXT("Please guess a 4 letter isogram (words without repeating characters)"));
-	PrintLine(TEXT("Please press \"Enter\" to continue"));
-
 	// Setting up game
 	SetupGame();
+
+	// // Debug Line
+	// PrintLine(FString::Printf(TEXT("The hidden word is: %s and it is %i characters long\n"), *HiddenWord, HiddenWord.Len()));
+
+	// Welcoming the player
+	PrintLine(TEXT("Welcome to the Bull Cow Game!"));
+	PrintLine(FString::Printf(TEXT("Guess the %i letter isogram"), HiddenWord.Len()));
+	PrintLine(TEXT("Enter your guess and press \"Enter\""));
 
 	// Prompt player for PlayerGuess
 };
@@ -24,15 +27,11 @@ void UBullCowCartridge::OnInput(const FString& Input)
 
 	// Checking PlayerGuess
 	if (Input == HiddenWord)
-	{
 		PrintLine(TEXT("You won!"));
-	}
 	else
 	{
 		if (Input.Len() != HiddenWord.Len())
-		{
-			PrintLine(TEXT("The hidden word has 4 characters, try again!"));
-		}
+			PrintLine(FString::Printf(TEXT("The hidden word has %i letters..."), HiddenWord.Len()));
 		PrintLine(TEXT("You lost..."));
 	}
 
