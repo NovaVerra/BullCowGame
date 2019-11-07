@@ -1,58 +1,67 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "./BullCowCartridge.h"
 
-// When the game starts
-void UBullCowCartridge::BeginPlay()
+void UBullCowCartridge::BeginPlay() // When the game starts
 {
 	Super::BeginPlay();
 
-	// Setting up game
-	SetupGame();
+	SetupGame(); // Setting up game
 
-	// // Debug Line
-	// PrintLine(FString::Printf(TEXT("The hidden word is: %s and it is %i characters long\n"), *HiddenWord, HiddenWord.Len()));
-
-	// Welcoming the player
-	PrintLine(TEXT("Welcome to the Bull Cow Game!"));
-	PrintLine(FString::Printf(TEXT("Guess the %i letter isogram"), HiddenWord.Len()));
-	PrintLine(TEXT("Enter your guess and press \"Enter\""));
-
-	// Prompt player for PlayerGuess
+	PrintLine(FString::Printf(TEXT("The hidden word is: %s and it is %i characters long\n"), *HiddenWord, HiddenWord.Len())); // Debug Line
 };
 
-// When player hits "Enter"
-void UBullCowCartridge::OnInput(const FString& Input)
+void UBullCowCartridge::OnInput(const FString& Input) // When player hits "Enter"
 {
-	ClearScreen();
-
-	// Checking PlayerGuess
-	if (Input == HiddenWord)
-		PrintLine(TEXT("You won!"));
+	if (bGameOver)
+	{
+		ClearScreen();
+		SetupGame();
+	}
 	else
 	{
-		if (Input.Len() != HiddenWord.Len())
-			PrintLine(FString::Printf(TEXT("The hidden word has %i letters..."), HiddenWord.Len()));
-		PrintLine(TEXT("You lost..."));
+		if (Input == HiddenWord) // Checking PlayerGuess
+		{
+			PrintLine(TEXT("You won!"));
+			EndGame();
+		}
+		else
+		{
+			if (Input.Len() != HiddenWord.Len())
+			{
+				PrintLine(FString::Printf(TEXT("The hidden word has %i letters...\nYou have lost!"), HiddenWord.Len()));
+				EndGame();
+			}
+		}
+
+		// Check if PlayerGuess is Isogram
+			// Prompt to guess again
+		// Check if PlayerGuess has the right number of characters
+			// Prompt to guess again
+		// Check if Life > 0
+
+		// Remove Life
+
+		// Does user want to play again?
+			// If yes, repeat (set next word)
+			// If no, print game failed and show HiddenWord	
 	}
-
-	// Check if PlayerGuess is Isogram
-		// Prompt to guess again
-	// Check if PlayerGuess has the right number of characters
-		// Prompt to guess again
-	// Check if Life > 0
-
-	// Remove Life
-
-	// Does user want to play again?
-		// If yes, repeat (set next word)
-		// If no, print game failed and show HiddenWord
 };
 
 void UBullCowCartridge::SetupGame()
 {
-	// Set the HiddenWord
+	// Initializing game state
 	HiddenWord = TEXT("star");
-
-	// Set Lives
 	Lives = 4;
+	bGameOver = false;
+
+	// Welcoming the player and prompt player for PlayerGuess
+	PrintLine(TEXT("Welcome to the Bull Cow Game!"));
+	PrintLine(FString::Printf(TEXT("Guess the %i letter isogram"), HiddenWord.Len()));
+	PrintLine(TEXT("Enter your guess and press \"Enter\""));
+}
+
+void UBullCowCartridge::EndGame()
+{
+	bGameOver = true;
+	PrintLine(TEXT("Please press enter to play again"));
 }
