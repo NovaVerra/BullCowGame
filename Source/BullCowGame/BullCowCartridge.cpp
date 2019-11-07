@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "BullCowCartridge.h"
+#include "./BullCowCartridge.h"
 
 // When the game starts
 void UBullCowCartridge::BeginPlay()
@@ -29,6 +29,10 @@ void UBullCowCartridge::OnInput(const FString& Input)
 	}
 	else
 	{
+		if (Input.Len() != HiddenWord.Len())
+		{
+			PrintLine(TEXT("The hidden word has 4 characters, try again!"));
+		}
 		PrintLine(TEXT("You lost..."));
 	}
 
