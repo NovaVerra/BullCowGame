@@ -48,21 +48,30 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
 	{
 		PrintLine(TEXT("You won!"));
 		EndGame();
+		return;
 	}
-	else
+	// if (!bIsIsogram(Guess))
+	// {
+	// 	PrintLine(TEXT("No repeating letters"));
+	// 	return;
+	// }
+
+	if (Guess.Len() != HiddenWord.Len()) // Check if PlayerGuess has the right number of characters
 	{
-		PrintLine(FString::Printf(TEXT("You now have %i lives"), --Lives));
-		if (Lives > 0)
-		{
-			if (Guess.Len() != HiddenWord.Len())
-			{
-				PrintLine(FString::Printf(TEXT("It is a %i letter word, try again"), HiddenWord.Len()));
-			}
-		}
-		else
-		{
-			PrintLine(TEXT("You have no lives left!"));
-			EndGame();
-		}
+		PrintLine(FString::Printf(TEXT("It is a %i letter word, try again"), HiddenWord.Len()));
+		PrintLine(FString::Printf(TEXT("You have %i lives remaining"), Lives));
+		return;
 	}
+
+	PrintLine(FString::Printf(TEXT("You lost a life... You now have %i lives"), --Lives));
+
+	if (Lives <= 0)
+	{
+		PrintLine(TEXT("You have no lives left!"));
+		PrintLine(TEXT("The hidden word was: %s"), *HiddenWord);
+		EndGame();
+		return;
+	}
+
+	PrintLine(TEXT("Trying guessing again, you have %i lives left"), Lives);
 }
