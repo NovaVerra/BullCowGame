@@ -13,7 +13,10 @@ void UBullCowCartridge::BeginPlay() // When the game starts
 	
 	for (int32 Index = 0; Index < 5; Index++)
 	{
-		PrintLine(FString::Printf(TEXT(">> %s"), *HiddenWordList[Index]));
+		if (HiddenWordList[Index].Len() >= 4 && HiddenWordList[Index].Len() <= 8)
+		{
+			PrintLine(FString::Printf(TEXT(">> %s"), *HiddenWordList[Index]));
+		}
 	}
 	
 };
