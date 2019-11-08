@@ -79,7 +79,7 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
 	PrintLine(TEXT("Trying guessing again, you have %i lives left"), Lives);
 }
 
-bool UBullCowCartridge::IsIsogram(FString Guess)
+bool UBullCowCartridge::IsIsogram(FString Guess) const
 {
 	// for (int i = 0; i < Guess.Len(); i++)
 	// {
