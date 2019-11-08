@@ -3,6 +3,7 @@
 
 const TArray<FString> HiddenWordList =
 {
+	TEXT("a"),
 	TEXT("ability"),
 	TEXT("able"),
 	TEXT("about"),
