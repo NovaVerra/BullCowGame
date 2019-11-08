@@ -17,7 +17,8 @@ class BULLCOWGAME_API UBullCowCartridge : public UCartridge
 	virtual void	OnInput(const FString& Input) override;
 	void			SetupGame();
 	void			EndGame();
-	void			ProcessGuess(FString NAME_GameUserSettings);
+	void			ProcessGuess(FString Guess);
+	bool			IsIsogram(FString Guess);
 
 	// Private Variables
 	private:
