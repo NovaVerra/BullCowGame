@@ -81,17 +81,30 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
 
 bool UBullCowCartridge::IsIsogram(FString Guess) const
 {
-	// for (int i = 0; i < Guess.Len(); i++)
+	// for (int Index = 0; Index < Guess.Len(); Index++)
 	// {
-	// 	Guess[i] = tolower(Guess[i]);
+	// 	Guess[Index] = Guess[Index].ToLower();
 	// }
 
-	// for (int i = 0; i < Guess.Len(); i++)
+	// sort(Guess.begin(), Guess.end());
+
+	// for (int Index = 0; Index < Guess.Len(); Index++)
 	// {
-	// 	if (Guess[i] == Guess[i + 1])
+	// 	if (Guess[Index] == Guess[Index + 1])
 	// 	{
 	// 		return false;
 	// 	}
 	// }
+	// return true;
+	for (int32 Index = 0; Index < Guess.Len(); Index++)
+	{
+		for (int32 Comparison = Index + 1; Comparison < Guess.Len(); Comparison++)
+		{
+			if (Guess[Index] == Guess[Comparison])
+			{
+				return false;
+			}
+		}
+	}
 	return true;
 }
