@@ -6,8 +6,9 @@ void	UBullCowCartridge::BeginPlay() // When the game starts
 {
 	Super::BeginPlay();
 
-	SetupGame(); // Setting up game
+	Isograms = GetValidWords(HiddenWordList);
 
+	SetupGame(); // Setting up game
 };
 
 void	UBullCowCartridge::OnInput(const FString& PlayerInput) // When player hits "Enter"
@@ -26,7 +27,7 @@ void	UBullCowCartridge::OnInput(const FString& PlayerInput) // When player hits 
 void	UBullCowCartridge::SetupGame()
 {
 	// Initializing game state
-	HiddenWord = GetValidWords(HiddenWordList)[FMath::RandRange(0, GetValidWords(HiddenWordList).Num() - 1)];
+	HiddenWord = Isograms[FMath::RandRange(0, Isograms.Num() - 1)];
 	Lives = HiddenWord.Len();
 	bGameOver = false;
 

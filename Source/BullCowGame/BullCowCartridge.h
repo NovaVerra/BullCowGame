@@ -22,7 +22,8 @@ class BULLCOWGAME_API UBullCowCartridge : public UCartridge
 
 	// Private Variables
 	private:
-	FString	HiddenWord;
-	int32	Lives;
-	bool	bGameOver;
+	FString			HiddenWord;
+	int32			Lives;
+	bool			bGameOver;
+	TArray<FString>	Isograms;
 };
