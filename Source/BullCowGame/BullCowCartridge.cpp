@@ -8,7 +8,6 @@ void	UBullCowCartridge::BeginPlay() // When the game starts
 
 	SetupGame(); // Setting up game
 
-	GetValidWords(HiddenWordList);
 	PrintLine(FString::Printf(TEXT("The hidden word is: %s and it is %i characters long\n"), *HiddenWord, HiddenWord.Len())); // Debug Line
 };
 
@@ -28,7 +27,7 @@ void	UBullCowCartridge::OnInput(const FString& PlayerInput) // When player hits 
 void	UBullCowCartridge::SetupGame()
 {
 	// Initializing game state
-	HiddenWord = TEXT("star");
+	HiddenWord = GetValidWords(HiddenWordList)[FMath::RandRange(0, GetValidWords(HiddenWordList).Num() - 1)];
 	Lives = HiddenWord.Len();
 	bGameOver = false;
 
@@ -64,7 +63,8 @@ void	UBullCowCartridge::ProcessGuess(const FString& Guess)
 		return;
 	}
 
-	PrintLine(FString::Printf(TEXT("You lost a life... You now have %i lives"), --Lives));
+	--Lives;
+	PrintLine(FString::Printf(TEXT("You lost a life... You now have %i lives"), Lives));
 
 	if (Lives <= 0)
 	{
