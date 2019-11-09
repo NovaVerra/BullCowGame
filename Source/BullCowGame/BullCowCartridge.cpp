@@ -8,7 +8,6 @@ void	UBullCowCartridge::BeginPlay() // When the game starts
 
 	SetupGame(); // Setting up game
 
-	PrintLine(FString::Printf(TEXT("The hidden word is: %s and it is %i characters long\n"), *HiddenWord, HiddenWord.Len())); // Debug Line
 };
 
 void	UBullCowCartridge::OnInput(const FString& PlayerInput) // When player hits "Enter"
@@ -35,6 +34,7 @@ void	UBullCowCartridge::SetupGame()
 	PrintLine(TEXT("Welcome to the Bull Cow Game!"));
 	PrintLine(FString::Printf(TEXT("Guess the %i letter isogram"), HiddenWord.Len()));
 	PrintLine(FString::Printf(TEXT("You have %i Lives\nEnter your guess and press \"Enter\""), HiddenWord.Len()));
+	PrintLine(FString::Printf(TEXT("The hidden word is: %s and it is %i characters long\n"), *HiddenWord, HiddenWord.Len())); // Debug Line
 }
 
 void	UBullCowCartridge::EndGame()
@@ -103,6 +103,5 @@ TArray<FString>	UBullCowCartridge::GetValidWords(const TArray<FString>& Words) c
 			ValidWords.Emplace(Word);
 		}
 	}
-	PrintLine(FString::Printf(TEXT("%i words selected"), ValidWords.Num()));
 	return ValidWords;
 }
